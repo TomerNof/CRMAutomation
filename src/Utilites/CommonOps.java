@@ -85,7 +85,8 @@ public class CommonOps extends Base
 	{
 		try
 		{
-			screen.click(getData("ImagePath") + imageName);
+			//screen.click(getData("ImagePath") + imageName);
+			screen.click(System.getProperty("user.dir")+"\\images\\" + imageName);
 			stepPass("Image "+imageName+" found");
 		}
 		catch (Exception e)

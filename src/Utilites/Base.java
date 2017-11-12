@@ -67,26 +67,31 @@ public class Base
 
 	public static WebDriver initFFDriver() throws ParserConfigurationException, SAXException, IOException
 	{
-		System.setProperty("webdriver.gecko.driver", getData("FFDriverPath"));
-//		FirefoxOptions options = new FirefoxOptions();
-//		options.setBinary("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe"); //This is the location where you have installed Firefox on your machine
-//		DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-//		capabilities.setCapability("moz:firefoxOptions", options);
+		System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir")+"\\drivers\\geckodriver.exe");
 		WebDriver driverff = new FirefoxDriver();
 		return driverff;
+		
+//		File pathBinary = new File(getData("FirefoxExe"));
+//		FirefoxBinary firefoxBinary = new FirefoxBinary(pathBinary);
+//		FirefoxProfile firefoxProfile = new FirefoxProfile();       
+//		System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir")+"\\drivers\\geckodriver.exe");
+//		WebDriver driverff=new FirefoxDriver(firefoxBinary, firefoxProfile);
+//		return driverff;
+
 	}
 	
 	public static WebDriver initIEDriver() throws ParserConfigurationException, SAXException, IOException
 	{
-		System.setProperty("webdriver.ie.driver", getData("IEDriverPath"));
+		//System.setProperty("webdriver.ie.driver", getData("IEDriverPath"));
+		System.setProperty("webdriver.ie.driver", System.getProperty("user.dir")+"\\drivers\\MicrosoftWebDriver.exe");
 		WebDriver driverie = new InternetExplorerDriver();
 		return driverie;
 	}
 	
 	public static WebDriver initChromeDriver() throws ParserConfigurationException, SAXException, IOException
 	{
-		System.setProperty("webdriver.chrome.driver", getData("ChromeDriverPath"));
-		//System.setProperty("webdriver.chrome.driver", "");
+		//System.setProperty("webdriver.chrome.driver", getData("ChromeDriverPath"));
+		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"\\drivers\\chromedriver.exe");
 		
 		WebDriver driver = new ChromeDriver();
 		return driver;
