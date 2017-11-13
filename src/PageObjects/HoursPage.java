@@ -28,13 +28,25 @@ public class HoursPage extends Base {
 	{
 		try
 		{
-			By locatorHour=By.className("journalrowtime");
+			//By locatorHour=By.className("journalrowtime");
+			By locatorHour=By.cssSelector("tbody tr td.journalrowtime");
 			for(WebElement newMeet:driver.findElements(locatorHour))
 			{
+				//System.out.println("newMeet="+newMeet.getText() );
 				if(newMeet.getText().equals(startHour))
 				{
-					newMeet.findElement(By.xpath("./../td[3]")).click();
-					//newMeet.findElement(By.xpath("./../*[contains(text(),'New Event')]")).click();
+					
+					for(WebElement y:newMeet.findElement(By.xpath("./../td[3]")).findElements(By.cssSelector("*")))
+					{
+						//System.out.println("y="+y.getText());
+						if(y.getText().equals("New Event"))
+						{
+							y.click();
+							break;
+						}
+					}
+					//x.click();
+					
 					break;
 				}
 			}
