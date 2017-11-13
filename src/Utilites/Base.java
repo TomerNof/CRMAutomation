@@ -29,12 +29,13 @@ public class Base
 	public static ExtentReports extent;
 	public static ExtentTest test;
 	public static String timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(Calendar.getInstance().getTime());	
+	
 	/*protected base(WebDriver localDriver) {
 		this.localDriver=localDriver;
 	}*/
 	public static String getData (String nodeName) throws ParserConfigurationException, SAXException, IOException
 	{
-		File fXmlFile = new File("c://test//CrmConfig.xml");
+		File fXmlFile = new File("c://CrmConfig.xml");
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = dBuilder.parse(fXmlFile);		
@@ -101,7 +102,7 @@ public class Base
 	{
 		try
 		{
-			extent = new ExtentReports(getData("ReportFilePath") +getData("BrowserType").toLowerCase()+getData("ReportFileName") + timeStamp + ".html", true);		
+			extent = new ExtentReports(getData("ReportFilePath")+timeStamp+"//" +getData("BrowserType").toLowerCase()+getData("ReportFileName") + timeStamp + ".html", true);		
 		}
 		catch(Exception e)
 		{
@@ -194,7 +195,7 @@ public class Base
 	}
 	public static String takeSS() throws IOException, ParserConfigurationException, SAXException
 	{
-		String SSpath = getData("ReportFilePath") + "screenshot_" + getRandomNumber() + ".png";
+		String SSpath = getData("ReportFilePath")+timeStamp+"//" + "screenshot_" + getRandomNumber() + ".png";
 		File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(scrFile, new File(SSpath));
 		return SSpath;
