@@ -44,7 +44,10 @@ public class EventDetailsPage extends Base {
 	{
 		try
 		{
-			
+			/////////////
+
+			String stratMeeting=CommonOps.getMeetingDate(getData("DateNewMeeting"),getData("StartHour"));
+			////////////////
 			comOps.verifyValueExists(titleDetails, titleDescription);
 			comOps.verifyValueExists(startMeet, start);
 			comOps.verifyValueExists(endMeet, end);

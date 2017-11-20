@@ -108,6 +108,27 @@ public class CommonOps extends Base
 			failOfTestCase(e.getMessage());
 		}
 	}
+	
+	public static String getMeetingDate(String dateNewMeeting,String StartHour)
+	{
+//		<DateNewMeeting>13/8/2019</DateNewMeeting>
+//
+//		<StartHour>03:00 PM</StartHour>
+//
+//		<EndHour>04:00 PM</EndHour>
+//
+//		<MeetDesc>New meeting with</MeetDesc>
+//
+//		<NewMeetingStart>Aug 13, 2019, 3:00:00 PM</NewMeetingStart>
+		String res="";
+		String newDateNewMeeting[]=dateNewMeeting.split("/");
+		res=
+		res+=" "+newDateNewMeeting[0]+", "+newDateNewMeeting[2]+", ";
+		String newStartHour[]=StartHour.split(" ");
+		newStartHour[0]=newStartHour[0]+":00";
+		res+=newStartHour[0]+" "+newStartHour[1];
+		return res;
+	}
 	private void drawElemet(WebElement element)
 	{
 		((JavascriptExecutor)driver).executeScript("arguments[0].style.border='2px solid blue'",element);
