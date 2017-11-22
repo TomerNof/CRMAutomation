@@ -2,6 +2,14 @@ package Utilites;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.Format;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -108,23 +116,22 @@ public class CommonOps extends Base
 			failOfTestCase(e.getMessage());
 		}
 	}
-	
-	public static String getMeetingDate(String dateNewMeeting,String StartHour)
+	public static String monthNameIn3Letters(int month)
 	{
-//		<DateNewMeeting>13/8/2019</DateNewMeeting>
-//
-//		<StartHour>03:00 PM</StartHour>
-//
-//		<EndHour>04:00 PM</EndHour>
-//
-//		<MeetDesc>New meeting with</MeetDesc>
-//
-//		<NewMeetingStart>Aug 13, 2019, 3:00:00 PM</NewMeetingStart>
+		DateFormat formatter = new SimpleDateFormat("MMM", Locale.US);
+	    GregorianCalendar calendar = new GregorianCalendar();
+	    calendar.set(Calendar.DAY_OF_MONTH, 1);
+	    calendar.set(Calendar.MONTH, month-1);
+	    return formatter.format(calendar.getTime());
+	    
+	}
+	public static String getMeetingDatetHour(String dateNewMeeting,String hour) throws ParseException
+	{
 		String res="";
 		String newDateNewMeeting[]=dateNewMeeting.split("/");
-		res=
+		res+=monthNameIn3Letters(Integer.parseInt(newDateNewMeeting[1]));
 		res+=" "+newDateNewMeeting[0]+", "+newDateNewMeeting[2]+", ";
-		String newStartHour[]=StartHour.split(" ");
+		String newStartHour[]=hour.split(" ");
 		newStartHour[0]=newStartHour[0]+":00";
 		res+=newStartHour[0]+" "+newStartHour[1];
 		return res;

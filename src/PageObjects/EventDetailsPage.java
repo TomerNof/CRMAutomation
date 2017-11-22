@@ -40,19 +40,18 @@ public class EventDetailsPage extends Base {
 		comOps=new CommonOps();
 	}
 	
-	public void validateNewMeeting(String titleDescription,String start,String end,String assignTo) throws IOException, ParserConfigurationException, SAXException
+	//public void validateNewMeeting(String titleDescription,String start,String end,String assignTo) throws IOException, ParserConfigurationException, SAXException
+	public void validateNewMeeting(String titleDescription,String assignTo) throws IOException, ParserConfigurationException, SAXException
 	{
 		try
 		{
-			/////////////
-
-			String stratMeeting=CommonOps.getMeetingDate(getData("DateNewMeeting"),getData("StartHour"));
-			////////////////
+			String startMeeting=CommonOps.getMeetingDatetHour(getData("DateNewMeeting"), getData("StartHour"));
+			String endMeeting=CommonOps.getMeetingDatetHour(getData("DateNewMeeting"), getData("EndHour"));
 			comOps.verifyValueExists(titleDetails, titleDescription);
-			comOps.verifyValueExists(startMeet, start);
-			comOps.verifyValueExists(endMeet, end);
+			comOps.verifyValueExists(startMeet, startMeeting);
+			comOps.verifyValueExists(endMeet, endMeeting);
 			comOps.verifyValueExists(this.assignTo, assignTo);
-			stepPass("Validated that "+titleDescription+", "+start+", "+end+", "+assignTo+" is in the validate form");
+			stepPass("Validated that "+titleDescription+", "+startMeeting+", "+endMeeting+", "+assignTo+" is in the validate form");
 		}
 		catch(Exception e)
 		{

@@ -123,8 +123,8 @@ public class CRM extends Base{
 		hoursPage.clickOnNewMetting(getData("StartHour"));
 		eventPage.fillForm(getData("MeetDesc")+" "+getData("UserName")+" "+getData("StartHour"), getData("UserName"));
 		eventDetailsPage.validateNewMeeting(getData("MeetDesc")+" "+getData("UserName")+" "+getData("StartHour"),
-				getData("NewMeetingStart"),
-				getData("NewMeetingEnd"),
+				//getData("NewMeetingStart"),
+				//getData("NewMeetingEnd"),
 				getData("UserName"));
 		
 	}
