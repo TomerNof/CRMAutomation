@@ -127,13 +127,19 @@ public class CommonOps extends Base
 	}
 	public static String getMeetingDatetHour(String dateNewMeeting,String hour) throws ParseException
 	{
+		//<StartHour>02:00 PM</StartHour>
 		String res="";
 		String newDateNewMeeting[]=dateNewMeeting.split("/");
-		res+=monthNameIn3Letters(Integer.parseInt(newDateNewMeeting[1]));
-		res+=" "+newDateNewMeeting[0]+", "+newDateNewMeeting[2]+", ";
-		String newStartHour[]=hour.split(" ");
-		newStartHour[0]=newStartHour[0]+":00";
-		res+=newStartHour[0]+" "+newStartHour[1];
+		res+=monthNameIn3Letters(Integer.parseInt(newDateNewMeeting[1]));//res="Nov"
+		res+=" "+newDateNewMeeting[0]+", "+newDateNewMeeting[2]+", ";//res="Nov 11, 2018, "
+		String hourSplit[]=hour.split(" ");//"02:00 PM"
+		String hourNumber=hourSplit[0];//"02:00"
+		String hourSpiltMinute[]=hourNumber.split(":");//"02","00"
+		String hourAfterSplit=hourSpiltMinute[0];//"02"
+		String minuteAfterSplit=hourSpiltMinute[1];//"00"
+		int hourInt=Integer.parseInt(hourAfterSplit);//2
+		String convertedHour=String.valueOf(hourInt)+":"+minuteAfterSplit+":00";//"2:00:00"
+		res+=convertedHour+" "+hourSplit[1];//res="Nov 11, 2018, 2:00:00 PM"
 		return res;
 	}
 	private void drawElemet(WebElement element)

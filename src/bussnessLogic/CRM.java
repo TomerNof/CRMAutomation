@@ -115,17 +115,13 @@ public class CRM extends Base{
 	@Test
 	public void newMeeting() throws IOException, ParserConfigurationException, SAXException, InterruptedException
 	{
-		//Error: no more then 4 meeting in the same time
 		initReportTest("newMeeting", "verify: create new meeting");
 		loginPage.loginUser(getData("LoginUserName"), getData("LoginPassword"));
 		mainPageCrm.clickCalenderTab();
 		calendarPage.moveToDay(getData("DateNewMeeting"));
 		hoursPage.clickOnNewMetting(getData("StartHour"));
 		eventPage.fillForm(getData("MeetDesc")+" "+getData("UserName")+" "+getData("StartHour"), getData("UserName"));
-		eventDetailsPage.validateNewMeeting(getData("MeetDesc")+" "+getData("UserName")+" "+getData("StartHour"),
-				//getData("NewMeetingStart"),
-				//getData("NewMeetingEnd"),
-				getData("UserName"));
+		eventDetailsPage.validateNewMeeting(getData("MeetDesc")+" "+getData("UserName")+" "+getData("StartHour"),getData("UserName"));
 		
 	}
 
