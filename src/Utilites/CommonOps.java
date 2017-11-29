@@ -15,7 +15,9 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.xpath.patterns.StepPattern;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.xml.sax.SAXException;
 
 import com.relevantcodes.extentreports.LogStatus;
@@ -145,5 +147,18 @@ public class CommonOps extends Base
 	private void drawElemet(WebElement element)
 	{
 		((JavascriptExecutor)driver).executeScript("arguments[0].style.border='2px solid blue'",element);
+	}
+	public void waitForElementToBeVisible(WebElement element,String elementName) throws IOException, ParserConfigurationException, SAXException
+	{
+		try
+		{
+			WebDriverWait wait=new WebDriverWait(driver, 5);
+			wait.until(ExpectedConditions.visibilityOf(element));
+			stepPass("element "+elementName+" is visible");
+		}
+		catch (Exception e) {
+			stepFail("element "+elementName+" is not visible");
+			failOfTestCase(e.getMessage());
+		}
 	}
 }

@@ -46,6 +46,7 @@ public class EventPage extends Base {
 			comOps.selectDropDownByVisibleText(assignToUserSrc, assignToUser);
 			addBtn.click();
 			comOps.selectDropDownByVisibleText(this.assignToUser, assignToUser);
+			//comOps.waitForElementToBeVisible(btnSave, "Save button");
 			btnSave.click();
 			stepPass("click on save in event form");
 		}

@@ -134,6 +134,8 @@ public class CRM extends Base{
 		comOps.verifyImageExists("freeCRM.PNG");
 		loginPage.loginUser(getData("LoginUserName"), getData("LoginPassword"));
 		comOps.verifyElementExists(mainPageCrm.getUserName());
-		comOps.verifyValueExists(mainPageCrm.getUserName(), getData("ExpectedUserTitle")+getData("UserName"));
+		//comOps.verifyValueExists(mainPageCrm.getUserName(), getData("ExpectedUserTitle")+getData("UserName"));
+		comOps.verifyValueExists(mainPageCrm.getUserName(), "User: "+getData("UserName"));
+		
 	}
 }
