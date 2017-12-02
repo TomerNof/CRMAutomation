@@ -76,6 +76,7 @@ public class CRM extends Base{
 	@After
 	public void doAfterTest() throws IOException, ParserConfigurationException, SAXException
 	{
+		takeSS();
 		mainPageCrm.clickLogout();
 		finalizeReportTest();
 	}
@@ -89,7 +90,6 @@ public class CRM extends Base{
 		String lastName=getData("NewContactLastName")+getRandomNumber();
 		contactInformationPage.fillForm(getData("NewContactFirstName"), lastName);
 		contactDetailsPage.validateContact(getData("NewContactFirstName"), lastName);
-		
 	}
 	@Test
 	public void newCompany() throws IOException, ParserConfigurationException, SAXException, InterruptedException

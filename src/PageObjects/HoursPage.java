@@ -13,7 +13,7 @@ import Utilites.*;
 public class HoursPage extends Base {
 
 	private WebDriver driver;
-	
+	private CommonOps comOps;
 //	@FindBy(how=How.NAME,using="slctMonth")
 //	private WebElement monthCombo;
 	
@@ -22,6 +22,7 @@ public class HoursPage extends Base {
 	public HoursPage(WebDriver driver) {
 		// TODO Auto-generated constructor stub
 		this.driver=driver;
+		comOps=new CommonOps();
 	}
 	
 	public void clickOnNewMetting(String startHour) throws IOException, ParserConfigurationException, SAXException
@@ -32,21 +33,18 @@ public class HoursPage extends Base {
 			By locatorHour=By.cssSelector("tbody tr td.journalrowtime");
 			for(WebElement newMeet:driver.findElements(locatorHour))
 			{
-				//System.out.println("newMeet="+newMeet.getText() );
 				if(newMeet.getText().equals(startHour))
 				{
 					
 					for(WebElement y:newMeet.findElement(By.xpath("./../td[3]")).findElements(By.cssSelector("*")))
 					{
-						//System.out.println("y="+y.getText());
 						if(y.getText().equals("New Event"))
 						{
+							
 							y.click();
 							break;
 						}
 					}
-					//x.click();
-					
 					break;
 				}
 			}

@@ -161,4 +161,17 @@ public class CommonOps extends Base
 			failOfTestCase(e.getMessage());
 		}
 	}
+	public void waitForElementToBeClickable(WebElement element,String elementName) throws IOException, ParserConfigurationException, SAXException
+	{
+		try
+		{
+			WebDriverWait wait=new WebDriverWait(driver, 5);
+			wait.until(ExpectedConditions.elementToBeClickable(element));
+			stepPass("element "+elementName+" is clickable");
+		}
+		catch (Exception e) {
+			stepFail("element "+elementName+" is not clickable");
+			failOfTestCase(e.getMessage());
+		}
+	}
 }
