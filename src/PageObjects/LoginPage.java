@@ -17,22 +17,23 @@ import com.relevantcodes.extentreports.LogStatus;
 
 public class LoginPage extends Base
 	{
-		public WebDriver driver;
-		
+		private WebDriver driver;
+		private CommonOps comOps;
 		@FindBy(how = How.NAME, using = "username")
 		private WebElement userName;
 		
 		@FindBy(how = How.NAME, using = "password")
 		private WebElement password;
 		
-		
-		@FindBy(how = How.CSS, using ="input[class='btn btn-small']")
+		//@FindBy(how = How.CSS, using ="input[class='btn btn-small']")
+		@FindBy(how = How.XPATH, using ="//*[@id=\"loginForm\"]/div/div/input")
 		private WebElement button;
 		
 		
 		public LoginPage(WebDriver driver)
 		{
 			this.driver = driver;
+			comOps=new CommonOps();
 		}
 		
 		public void loginUser(String userName,String password) throws IOException, ParserConfigurationException, SAXException
@@ -47,7 +48,10 @@ public class LoginPage extends Base
 				this.password.sendKeys(password);
 				stepPass(password+" inserted");
 				sleep();
+				//comOps.waitForElementToBeClickable(button, "Login button");
+				//comOps.waitForElementToBeVisible(button, "Login button");
 				this.button.click();
+
 				stepPass("button clicked");
 				
 			}

@@ -76,7 +76,6 @@ public class CRM extends Base{
 	@After
 	public void doAfterTest() throws IOException, ParserConfigurationException, SAXException
 	{
-		takeSS();
 		mainPageCrm.clickLogout();
 		finalizeReportTest();
 	}
