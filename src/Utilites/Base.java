@@ -35,7 +35,10 @@ public class Base
 	}*/
 	public static String getData (String nodeName) throws ParserConfigurationException, SAXException, IOException
 	{
-		File fXmlFile = new File("c://test//CrmConfig.xml");
+		File fXmlFile =new File("c://test//CrmConfig2.xml");
+		if(!fXmlFile.exists()) {//default data file
+			fXmlFile =new File( System.getProperty("user.dir")+"//CrmConfig.xml");
+		}
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = dBuilder.parse(fXmlFile);		

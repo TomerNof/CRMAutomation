@@ -16,5 +16,6 @@ public class testRunner
 		System.out.println("Starting execution");
 		JUnitCore.main("bussnessLogic.CRM");
 		System.out.println("Ending execution");
+
 	}
 }

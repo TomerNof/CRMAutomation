@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Environment>
+	<BrowserType>chrome</BrowserType>      			 	
+	<URL>https://www.freecrm.com/index.html</URL>
+
+
+	<!-- Details -->
+	<LoginUserName>tomernof</LoginUserName>
+	<LoginPassword>mbcz9123</LoginPassword>
+	<UserName>Tomer Nof</UserName>
+	
+	<milis>4000</milis>
+	<DateNewMeeting>8/5/2019</DateNewMeeting>
+	<StartHour>07:00 AM</StartHour>
+	<EndHour>08:00 AM</EndHour>
+	<MeetDesc>New meeting with</MeetDesc>
+
+	<NewCompanyTitle>ABCD</NewCompanyTitle>
+	<IndustryName>IT</IndustryName>
+	<EmployeeNumber>150</EmployeeNumber>
+	<CompanyPhone>031234567</CompanyPhone>
+	<CompanyWebsite>http://www.abc.com</CompanyWebsite>
+
+	<NewContactFirstName>selenium</NewContactFirstName>
+	<NewContactLastName>webdriver</NewContactLastName>
+
+	<!-- Report -->
+	<ReportFilePath>C:/ExampleReports/</ReportFilePath>
+	<ReportFileName>_TestReport_</ReportFileName>	
+</Environment>
