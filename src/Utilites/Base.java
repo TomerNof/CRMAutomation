@@ -10,6 +10,12 @@ import javax.xml.parsers.*;
 import static org.junit.Assert.*;
 
 import org.apache.commons.io.FileUtils;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
 import org.openqa.selenium.firefox.*;
@@ -21,18 +27,78 @@ import org.xml.sax.SAXException;
 
 import com.relevantcodes.extentreports.*;
 
+import PageObjects.CalendarPage;
+import PageObjects.CompanyDetailsPage;
+import PageObjects.CompanyPage;
+import PageObjects.ContactDetailsPage;
+import PageObjects.ContactInformationPage;
+import PageObjects.ContactsPage;
+import PageObjects.CreateCompanyPage;
+import PageObjects.EventDetailsPage;
+import PageObjects.EventPage;
+import PageObjects.HoursPage;
+import PageObjects.LoginPage;
+import PageObjects.MainPageCrm;
+import PageObjects.ManagePage;
+
 public class Base
 {
 	public static WebDriver driver;
 	protected WebDriver localDriver;
-	public static Screen screen;
-	public static ExtentReports extent;
-	public static ExtentTest test;
-	public static String timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(Calendar.getInstance().getTime());	
+	protected static Screen screen;
+	protected static ExtentReports extent;
+	protected static ExtentTest test;
+	protected static String timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(Calendar.getInstance().getTime());	
+	protected static LoginPage loginPage;
+	protected static MainPageCrm mainPageCrm;
 	
+	protected static CalendarPage calendarPage;
+	protected static HoursPage hoursPage;
+	protected static EventPage eventPage;
+	protected static EventDetailsPage eventDetailsPage;
+	
+	protected static CompanyPage companyPage;
+	protected static CreateCompanyPage createCompanyPage; 
+	protected static CompanyDetailsPage companyDetailsPage;
+	
+	protected static ContactsPage contactsPage;
+	protected static ContactInformationPage contactInformationPage;
+	protected static ContactDetailsPage contactDetailsPage;
 	/*protected base(WebDriver localDriver) {
 		this.localDriver=localDriver;
 	}*/
+	@BeforeClass
+	public static void startSession() throws ParserConfigurationException, SAXException, IOException
+	{		
+		initBrowser(getData("BrowserType"));
+		InstanceReport();
+		ManagePage.init();
+	}
+	
+	@AfterClass
+	public static void closeSession()
+	{
+		finalizeExtentReport();
+		if(driver!=null)
+		{
+			driver.quit();
+		}
+	}
+	@Rule
+	public TestName testName=new TestName();
+	@Before
+	public void doBeforeTest()
+	{
+
+		initReportTest(testName.getMethodName().split("_")[0],testName.getMethodName().split("_")[1]);
+		//driver.navigate().refresh();//for firefox browser
+	}
+	@After
+	public void doAfterTest() throws IOException, ParserConfigurationException, SAXException
+	{
+		mainPageCrm.clickLogout();
+		finalizeReportTest();
+	}
 	public static String getData (String nodeName) throws ParserConfigurationException, SAXException, IOException
 	{
 		File fXmlFile =new File("c://test//CrmConfig2.xml");
@@ -145,7 +211,7 @@ public class Base
 			fail("AssertinoError finalizeReportTest()="+e.getMessage());
 		}
 	}
-	public void stepPass(String description)
+	public static void stepPass(String description)
 	{
 		try
 		{
@@ -160,7 +226,7 @@ public class Base
 			fail("AssertinoError stepPass("+description+")="+e.getMessage());
 		}
 	}
-	public void stepFail(String description) throws IOException, ParserConfigurationException, SAXException
+	public static void stepFail(String description) throws IOException, ParserConfigurationException, SAXException
 	{
 		try
 		{

@@ -24,7 +24,7 @@ import com.relevantcodes.extentreports.LogStatus;
 
 public class CommonOps extends Base
 {
-	public void verifyElementExists(WebElement elem) throws IOException, ParserConfigurationException, SAXException
+	public static void verifyElementExists(WebElement elem) throws IOException, ParserConfigurationException, SAXException
 	{
 		try
 		{
@@ -39,7 +39,7 @@ public class CommonOps extends Base
 		}
 	}
 	
-	public void verifyValueExists(WebElement elem, String expectedValue) throws IOException, ParserConfigurationException, SAXException
+	public static void verifyValueExists(WebElement elem, String expectedValue) throws IOException, ParserConfigurationException, SAXException
 	{
 		try
 		{
@@ -61,7 +61,7 @@ public class CommonOps extends Base
 	}
 	
 	
-	public void selectDropDownByValue(WebElement elem, String valueLanguage) throws IOException, ParserConfigurationException, SAXException
+	public static void selectDropDownByValue(WebElement elem, String valueLanguage) throws IOException, ParserConfigurationException, SAXException
 	{
 		try
 		{
@@ -76,7 +76,7 @@ public class CommonOps extends Base
 		}
 	}
 
-	public void selectDropDownByVisibleText(WebElement elem, String valueLanguage) throws IOException, ParserConfigurationException, SAXException
+	public static void selectDropDownByVisibleText(WebElement elem, String valueLanguage) throws IOException, ParserConfigurationException, SAXException
 	{
 		try
 		{
@@ -91,7 +91,7 @@ public class CommonOps extends Base
 		}
 	}
 
-	public void verifyImageExists(String imageName) throws IOException, ParserConfigurationException, SAXException
+	public static void verifyImageExists(String imageName) throws IOException, ParserConfigurationException, SAXException
 	{
 		try
 		{
@@ -105,7 +105,7 @@ public class CommonOps extends Base
 			fail(e.getMessage());
 		}
 	}
-	public void clickOnAlert() throws IOException, ParserConfigurationException, SAXException {
+	public static void clickOnAlert() throws IOException, ParserConfigurationException, SAXException {
 		try
 		{
 			Alert alertWin=driver.switchTo().alert();
@@ -144,11 +144,11 @@ public class CommonOps extends Base
 		res+=convertedHour+" "+hourSplit[1];//res="Nov 11, 2018, 2:00:00 PM"
 		return res;
 	}
-	private void drawElemet(WebElement element)
+	private static void drawElemet(WebElement element)
 	{
 		((JavascriptExecutor)driver).executeScript("arguments[0].style.border='2px solid blue'",element);
 	}
-	public void waitForElementToBeVisible(WebElement element,String elementName) throws IOException, ParserConfigurationException, SAXException
+	public static void waitForElementToBeVisible(WebElement element,String elementName) throws IOException, ParserConfigurationException, SAXException
 	{
 		try
 		{
@@ -161,7 +161,7 @@ public class CommonOps extends Base
 			failOfTestCase(e.getMessage());
 		}
 	}
-	public void waitForElementToBeClickable(WebElement element,String elementName) throws IOException, ParserConfigurationException, SAXException
+	public static void waitForElementToBeClickable(WebElement element,String elementName) throws IOException, ParserConfigurationException, SAXException
 	{
 		try
 		{
