@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -37,6 +38,9 @@ public class MainPageCrm  extends Base
 	
 	@FindBy(how=How.XPATH,using="//*[@id='navmenu']/ul/li[4]/a")
 	private WebElement contact;
+	
+	@FindBy(how=How.LINK_TEXT,using="New Event")
+	private WebElement newEvent;
 	
 	public MainPageCrm(WebDriver driver)
 	{
@@ -141,5 +145,30 @@ public class MainPageCrm  extends Base
 			failOfTestCase(e.getMessage());
 		}
 		
+	}
+	public void moveToCalenderTab() throws IOException, ParserConfigurationException, SAXException
+	{
+		try {
+			moveToMainFrame();
+			CommonOps.moveToElement(calendar, "Calander Tab");
+		}
+		catch (Exception e) {
+			stepFail("Didnt got to calander tab");
+			failOfTestCase(e.getMessage());
+			
+		}
+	}
+	public void clickOnNewEvent() throws IOException, ParserConfigurationException, SAXException {
+		try {
+			moveToMainFrame();
+			CommonOps.moveToElement(newEvent, "New Event option");
+			newEvent.click();
+			stepPass("Clicked on new event option");
+		}
+		catch (Exception e) {
+			stepFail("Didnt clicked on new event option");
+			failOfTestCase(e.getMessage());
+			
+		}
 	}
 }

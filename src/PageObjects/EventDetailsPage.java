@@ -35,6 +35,10 @@ public class EventDetailsPage extends Base {
 	@FindBy(how=How.XPATH,using="//strong[text()='Assigned to']/../../td[2]")
 	private WebElement assignTo;
 	
+	//html/body/table[2]/tbody/tr[1]/td[2]/table/tbody/tr/td/fieldset/legend
+	@FindBy(how=How.CSS,using="tbody tr td fieldset legend[class=\"fieldset\"]")
+	private WebElement eventInformation;
+	
 	public EventDetailsPage(WebDriver driver) {
 		this.driver=driver;
 		comOps=new CommonOps();
@@ -75,5 +79,9 @@ public class EventDetailsPage extends Base {
 
 		}
 		return res;
+	}
+	public WebElement getEventInformation()
+	{
+		return this.eventInformation;
 	}
 }

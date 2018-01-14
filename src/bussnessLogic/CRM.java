@@ -72,4 +72,13 @@ public class CRM extends Base{
 		CommonOps.verifyValueExists(mainPageCrm.getUserName(), "User: "+getData("UserName"));
 		
 	}
+	@Test
+	public void verifySeeViewToday_LookForTheEventsOfToday() throws IOException, ParserConfigurationException, SAXException, NumberFormatException, InterruptedException
+	{
+		loginPage.loginUser(getData("LoginUserName"), getData("LoginPassword"));
+		mainPageCrm.moveToCalenderTab();
+		mainPageCrm.clickOnNewEvent();
+		CommonOps.verifyElementExists(eventDetailsPage.getEventInformation());
+	
+	}
 }

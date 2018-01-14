@@ -15,6 +15,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.xpath.patterns.StepPattern;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -172,6 +173,19 @@ public class CommonOps extends Base
 		catch (Exception e) {
 			stepFail("element "+elementName+" is not clickable");
 			failOfTestCase(e.getMessage());
+		}
+	}
+	public static void moveToElement(WebElement element,String elementName) throws IOException, ParserConfigurationException, SAXException
+	{
+		try {
+			Actions act = new Actions(driver);
+			act.moveToElement(element).build().perform();
+			stepPass("Moved to element "+elementName);
+		}
+		catch (Exception e) {
+			stepFail("didnt Moved to element "+elementName);
+			failOfTestCase(e.getMessage());
+			// TODO: handle exception
 		}
 	}
 }
