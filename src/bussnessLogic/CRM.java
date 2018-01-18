@@ -21,9 +21,9 @@ public class CRM extends Base{
 	
 	
 	@Test
-	public void newContact_VerifyNewContact() throws IOException, ParserConfigurationException, SAXException, InterruptedException
+	public void newContact_VerifyNewContact() throws IOException, ParserConfigurationException, SAXException 
 	{
-		loginPage.loginUser(getData("LoginUserName"), getData("LoginPassword"));
+		//loginPage.loginUser(getData("LoginUserName"), getData("LoginPassword"));
 		mainPageCrm.clickContactTab();
 		contactsPage.clickOnNewContact();
 		String lastName=getData("NewContactLastName")+getRandomNumber();
@@ -34,7 +34,7 @@ public class CRM extends Base{
 	public void newCompany_VerifyNewCompany() throws IOException, ParserConfigurationException, SAXException, InterruptedException
 	{
 
-		loginPage.loginUser(getData("LoginUserName"), getData("LoginPassword"));
+		//loginPage.loginUser(getData("LoginUserName"), getData("LoginPassword"));
 		mainPageCrm.clickCompanyTab();
 		companyPage.clickOnNewCompantBtn();
 		String companyName=getData("NewCompanyTitle")+getRandomNumber();
@@ -54,7 +54,7 @@ public class CRM extends Base{
 	@Test
 	public void newMeeting_VerifyCreateNewMeeting() throws IOException, ParserConfigurationException, SAXException, InterruptedException
 	{
-		loginPage.loginUser(getData("LoginUserName"), getData("LoginPassword"));
+		//loginPage.loginUser(getData("LoginUserName"), getData("LoginPassword"));
 		mainPageCrm.clickCalenderTab();
 		calendarPage.moveToDay(getData("DateNewMeeting"));
 		hoursPage.clickOnNewMetting(getData("StartHour"));
@@ -67,7 +67,7 @@ public class CRM extends Base{
 	{
 		
 		//CommonOps.verifyImageExists("freeCRM.PNG");
-		loginPage.loginUser(getData("LoginUserName"), getData("LoginPassword"));
+		//loginPage.loginUser(getData("LoginUserName"), getData("LoginPassword"));
 		CommonOps.verifyElementExists(mainPageCrm.getUserName());
 		CommonOps.verifyValueExists(mainPageCrm.getUserName(), "User: "+getData("UserName"));
 		
@@ -75,7 +75,7 @@ public class CRM extends Base{
 	@Test
 	public void verifySeeViewToday_LookForTheEventsOfToday() throws IOException, ParserConfigurationException, SAXException, NumberFormatException, InterruptedException
 	{
-		loginPage.loginUser(getData("LoginUserName"), getData("LoginPassword"));
+		//loginPage.loginUser(getData("LoginUserName"), getData("LoginPassword"));
 		mainPageCrm.moveToCalenderTab();
 		mainPageCrm.clickOnNewEvent();
 		CommonOps.verifyElementExists(eventDetailsPage.getEventInformation());

@@ -87,10 +87,13 @@ public class Base
 	@Rule
 	public TestName testName=new TestName();
 	@Before
-	public void doBeforeTest()
+	public void doBeforeTest() throws IOException, ParserConfigurationException, SAXException
 	{
-
-		initReportTest(testName.getMethodName().split("_")[0],testName.getMethodName().split("_")[1]);
+		String text = testName.getMethodName().split("_")[1];
+		String cleanText = text.replaceAll("\\d+", "").replaceAll("(.)([A-Z])", "$1 $2");
+		initReportTest(testName.getMethodName().split("_")[0],cleanText);
+		loginPage.loginUser(getData("LoginUserName"), getData("LoginPassword"));
+		
 		//driver.navigate().refresh();//for firefox browser
 	}
 	@After
