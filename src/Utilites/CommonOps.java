@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.Set;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -145,6 +146,14 @@ public class CommonOps extends Base
 		res+=convertedHour+" "+hourSplit[1];//res="Nov 11, 2018, 2:00:00 PM"
 		return res;
 	}
+	public static String getTodayString()
+	{
+		//Monday Jan 22, 2018
+		DateFormat dateFormat = new SimpleDateFormat("EEEE MMM dd, yyyy");
+		Date date = new Date();
+		String day=dateFormat.format(date);
+		return day;
+	}
 	private static void drawElemet(WebElement element)
 	{
 		((JavascriptExecutor)driver).executeScript("arguments[0].style.border='2px solid blue'",element);
@@ -186,6 +195,19 @@ public class CommonOps extends Base
 			stepFail("didnt Moved to element "+elementName);
 			failOfTestCase(e.getMessage());
 			// TODO: handle exception
+		}
+	}
+	public static void moveToOpenWindow(WebDriver driver) throws IOException, ParserConfigurationException, SAXException {
+		try {
+			Set<String> handles= driver.getWindowHandles();
+			for(String handle:handles) {
+				driver.switchTo().window(handle);
+			}
+			stepPass("Moved to opened window");
+		}
+		catch (Exception e) {
+			stepFail("Didnt moved to opened window");
+			failOfTestCase(e.getMessage());
 		}
 	}
 }

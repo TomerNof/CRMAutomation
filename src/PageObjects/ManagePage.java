@@ -26,5 +26,7 @@ public class ManagePage extends Base{
 		contactInformationPage=PageFactory.initElements(driver, ContactInformationPage.class);
 		contactDetailsPage=PageFactory.initElements(driver, ContactDetailsPage.class);
 
+		newDealPage=PageFactory.initElements(driver, NewDealPage.class);
+		companyLookupPage=PageFactory.initElements(driver, CompanyLookupPage.class);
 	}
 }

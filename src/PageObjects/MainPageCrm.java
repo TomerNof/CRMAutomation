@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.bridj.cpp.mfc.OnRegisteredMessage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.events.WebDriverEventListener;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.xml.sax.SAXException;
@@ -42,9 +44,19 @@ public class MainPageCrm  extends Base
 	@FindBy(how=How.LINK_TEXT,using="New Event")
 	private WebElement newEvent;
 	
+	@FindBy(how=How.LINK_TEXT,using="View Today")
+	private WebElement viewToday;
+	
+	@FindBy(how=How.XPATH,using="//*[@id=\"navmenu\"]/ul/li[5]")
+	private WebElement deal;
+	
+	@FindBy(how=How.LINK_TEXT,using="New Deal")
+	private WebElement newDeal;
+	
 	public MainPageCrm(WebDriver driver)
 	{
 		this.driver = driver;
+		//moveToMainFrame();
 	}
 	private void moveToMainFrame()
 	{
@@ -158,17 +170,33 @@ public class MainPageCrm  extends Base
 			
 		}
 	}
-	public void clickOnNewEvent() throws IOException, ParserConfigurationException, SAXException {
+	public void clickOnViewToday() throws IOException, ParserConfigurationException, SAXException {
 		try {
 			moveToMainFrame();
-			CommonOps.moveToElement(newEvent, "New Event option");
-			newEvent.click();
-			stepPass("Clicked on new event option");
+			CommonOps.moveToElement(viewToday, "View Today option");
+			viewToday.click();
+			stepPass("Clicked on View Today option");
 		}
 		catch (Exception e) {
-			stepFail("Didnt clicked on new event option");
+			stepFail("Didnt clicked on View Today option");
 			failOfTestCase(e.getMessage());
 			
+		}
+	}
+	public void moveToNewDealForm() throws IOException, ParserConfigurationException, SAXException
+	{
+		try
+		{
+			moveToMainFrame();
+			//sleep();
+			//CommonOps.waitForElementToBeVisible(this.deal,"Deal tab");
+			CommonOps.moveToElement(this.deal,"Deal tab");
+			this.newDeal.click();
+			stepPass("Clicked on new deal");
+		}
+		catch (Exception e) {
+			stepFail("didnt clicked on new deal");
+			failOfTestCase(e.getMessage());
 		}
 	}
 }

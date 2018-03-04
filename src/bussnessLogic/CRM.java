@@ -20,21 +20,19 @@ import Utilites.*;
 public class CRM extends Base{
 	
 	
-	@Test
+	//@Test
 	public void newContact_VerifyNewContact() throws IOException, ParserConfigurationException, SAXException 
 	{
-		//loginPage.loginUser(getData("LoginUserName"), getData("LoginPassword"));
 		mainPageCrm.clickContactTab();
 		contactsPage.clickOnNewContact();
 		String lastName=getData("NewContactLastName")+getRandomNumber();
 		contactInformationPage.fillForm(getData("NewContactFirstName"), lastName);
 		contactDetailsPage.validateContact(getData("NewContactFirstName"), lastName);
 	}
-	@Test
+	//@Test
 	public void newCompany_VerifyNewCompany() throws IOException, ParserConfigurationException, SAXException, InterruptedException
 	{
 
-		//loginPage.loginUser(getData("LoginUserName"), getData("LoginPassword"));
 		mainPageCrm.clickCompanyTab();
 		companyPage.clickOnNewCompantBtn();
 		String companyName=getData("NewCompanyTitle")+getRandomNumber();
@@ -51,10 +49,9 @@ public class CRM extends Base{
 		
 	}	
 	
-	@Test
+	//@Test
 	public void newMeeting_VerifyCreateNewMeeting() throws IOException, ParserConfigurationException, SAXException, InterruptedException
 	{
-		//loginPage.loginUser(getData("LoginUserName"), getData("LoginPassword"));
 		mainPageCrm.clickCalenderTab();
 		calendarPage.moveToDay(getData("DateNewMeeting"));
 		hoursPage.clickOnNewMetting(getData("StartHour"));
@@ -62,23 +59,20 @@ public class CRM extends Base{
 		eventDetailsPage.validateNewMeeting(getData("MeetDesc")+" "+getData("UserName")+" "+getData("StartHour"),getData("UserName"));
 		
 	}
-	@Test
+	//@Test
 	public void verifyUserName_VerifyUserNameIsValid() throws IOException, ParserConfigurationException, SAXException, InterruptedException
 	{
-		
-		//CommonOps.verifyImageExists("freeCRM.PNG");
-		//loginPage.loginUser(getData("LoginUserName"), getData("LoginPassword"));
 		CommonOps.verifyElementExists(mainPageCrm.getUserName());
 		CommonOps.verifyValueExists(mainPageCrm.getUserName(), "User: "+getData("UserName"));
+		//CommonOps.verifyImageExists("freeCRM.PNG");
 		
 	}
 	@Test
-	public void verifySeeViewToday_LookForTheEventsOfToday() throws IOException, ParserConfigurationException, SAXException, NumberFormatException, InterruptedException
+	public void newDeal_verifyNewDealWasCreated() throws IOException, ParserConfigurationException, SAXException, NumberFormatException, InterruptedException
 	{
-		//loginPage.loginUser(getData("LoginUserName"), getData("LoginPassword"));
-		mainPageCrm.moveToCalenderTab();
-		mainPageCrm.clickOnNewEvent();
-		CommonOps.verifyElementExists(eventDetailsPage.getEventInformation());
-	
+		mainPageCrm.moveToNewDealForm();
+		newDealPage.setDealDetails("bbbbb","abcd");
+
+		sleep();
 	}
 }

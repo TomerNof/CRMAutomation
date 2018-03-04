@@ -27,19 +27,7 @@ import org.xml.sax.SAXException;
 
 import com.relevantcodes.extentreports.*;
 
-import PageObjects.CalendarPage;
-import PageObjects.CompanyDetailsPage;
-import PageObjects.CompanyPage;
-import PageObjects.ContactDetailsPage;
-import PageObjects.ContactInformationPage;
-import PageObjects.ContactsPage;
-import PageObjects.CreateCompanyPage;
-import PageObjects.EventDetailsPage;
-import PageObjects.EventPage;
-import PageObjects.HoursPage;
-import PageObjects.LoginPage;
-import PageObjects.MainPageCrm;
-import PageObjects.ManagePage;
+import PageObjects.*;
 
 public class Base
 {
@@ -64,9 +52,11 @@ public class Base
 	protected static ContactsPage contactsPage;
 	protected static ContactInformationPage contactInformationPage;
 	protected static ContactDetailsPage contactDetailsPage;
-	/*protected base(WebDriver localDriver) {
-		this.localDriver=localDriver;
-	}*/
+	
+	protected static NewDealPage newDealPage;
+	protected static CompanyLookupPage companyLookupPage;
+
+
 	@BeforeClass
 	public static void startSession() throws ParserConfigurationException, SAXException, IOException
 	{		

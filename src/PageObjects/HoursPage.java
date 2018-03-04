@@ -17,19 +17,29 @@ public class HoursPage extends Base {
 //	@FindBy(how=How.NAME,using="slctMonth")
 //	private WebElement monthCombo;
 	
-	
+	@FindBy(how=How.XPATH,using="/html/body/table[2]/tbody/tr[1]/td[2]/table/tbody/tr/td/table/tbody/tr/td[1]/table/tbody/tr[1]/td[2]/table/tbody/tr/td/strong")
+	private WebElement todayDate;
 	
 	public HoursPage(WebDriver driver) {
 		// TODO Auto-generated constructor stub
 		this.driver=driver;
 		comOps=new CommonOps();
 	}
-	
+	public WebElement getTodayDate() throws IOException, ParserConfigurationException, SAXException
+	{
+		try {
+			return this.todayDate;
+		}
+		catch (Exception e) {
+			stepFail("Didnt find today date");
+			failOfTestCase(e.getMessage());
+		}
+		return null;
+	}
 	public void clickOnNewMetting(String startHour) throws IOException, ParserConfigurationException, SAXException
 	{
 		try
 		{
-			//By locatorHour=By.className("journalrowtime");
 			By locatorHour=By.cssSelector("tbody tr td.journalrowtime");
 			for(WebElement newMeet:driver.findElements(locatorHour))
 			{
